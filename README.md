@@ -1,11 +1,23 @@
 # Quad Cortex stomp tools
 
-The idea for reverse engineering this, came from trying to run Doom on the Quad Cortex (which I actually succeeded in doing). The problem is that you can only watch the intro screen and do nothing. That brought me to the point of trying to reverse engineer how the stomps works.
+The idea for reverse engineering this came from trying to run Doom on the Quad Cortex (which I actually succeeded in doing). The problem is that you can only watch the intro screen and do nothing. That brought me to the point of trying to reverse engineer how the stomps work.
 
 In this repository you will find all kinds of utilities to interface with the stomps. In the `python` directory you will find my original scripts I used to reverse engineer the knobs, and some fun things I made to try and understand how to use them in fun ways. One of them is a control over websockets proof of concept!
 
 The main part is the C-language implementation. This will allow you to compile a native executable for the Quad Cortex, and it will also be an important part of getting Doom to work.
+A built version for the Quad Cortex is available as `stomp_listener`.
 
+Keep in mind this is the first project I've done in the C-language, so the code might have some issues. If that's the case, don't hesitate to open a new issue.
+
+## Building the listener
+First set your cross compiler path. For the Quad Cortex this should be `arm-linux-gnueabi-`. You can get it [from here](https://github.com/radcolor/arm-linux-gnueabi)
+```
+export CROSS_COMPILE=<your-cross-compiler-path>
+```
+Then to build just run
+```
+make
+```
 
 ## Stomp message byte examples:
 
