@@ -157,22 +157,27 @@ void ProcessFile(int *file){
     }
 }
 
+void ReadStomps(FILE *files[12]){
+    for (int i = 1; i < N_STOMPS; i++)
+    {
+        if(files[i] == -1){
+            continue;
+        }
+        ProcessFile(files[i]);
+    }
+}
+
 int main()
 {
     FILE *files[12];
     
-
     printf("Starting stomp listener\n");
     OpenFiles(files);
 
     printf("Listening to stomp messages\n");
     while (1)
     {
-        // Loop over all files and open a filestream
-        for (int i = 1; i < 12; i++)
-        {
-            ProcessFile(files[i]);
-        }
+        ReadStomps(files);
     }    
 
     printf("Closing stomp listeners\n");
