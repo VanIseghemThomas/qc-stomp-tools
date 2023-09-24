@@ -1,6 +1,6 @@
 # Quad Cortex stomp tools
 
-The idea for reverse engineering this came from trying to run Doom on the Quad Cortex (which I actually succeeded in doing). The problem is that you can only watch the intro screen and do nothing. That brought me to the point of trying to reverse engineer how the stomps work.
+The idea for reverse engineering this came from trying to run [Doom on the Quad Cortex (which I actually succeeded in doing)](https://github.com/VanIseghemThomas/qcDOOM). The problem is that you can only watch the intro screen and do nothing. That brought me to the point of trying to reverse engineer how the stomps work.
 
 In this repository you will find all kinds of utilities to interface with the stomps. In the `python` directory you will find my original scripts I used to reverse engineer the knobs, and some fun things I made to try and understand how to use them in fun ways. One of them is a control over websockets proof of concept!
 
