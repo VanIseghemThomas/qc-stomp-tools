@@ -17,5 +17,6 @@ typedef struct {
 int OpenZencoderFd();
 int CloseZencoderFd();
 int SetLedAtIndexRGB(int led_index, int red, int green, int blue);
+void DisableAllLeds();
 
 #endif // STOMP_LED_H

@@ -60,3 +60,14 @@ int SetLedAtIndexRGB(int led_index, int red, int green, int blue) {
 
     return 0;
 }
+
+void DisableAllLeds(){
+    for (int i = 0; i < 11; i++)
+    {
+        // Ignore the tempo led
+        if(i == 9){
+            continue;
+        }
+        SetLedAtIndexRGB(i, 0, 0, 0);
+    }
+}
