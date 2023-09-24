@@ -7,6 +7,14 @@
 
 volatile sig_atomic_t stop_flag = 0;
 
+typedef struct {
+    int hue;
+    int saturation;
+    int value;
+} hsv;
+
+hsv colors[9];
+
 void sigint_handler(int signum) {
     stop_flag = 1;
     printf("Stopping...\n");
@@ -61,36 +69,52 @@ void HsvToRgb(int hue, int saturation, int value, int *red, int *green, int *blu
     *blue += m;
 }
 
+void InitColors(int spectrum, int brightness) {
+    int hue = 0;
+    int offset = spectrum / 9;
+    for (int i = 0; i < 9; i++) {
+        // Increment hue for next LED
+        hue += offset;
+        if (hue >= 360) {
+            hue = 0;
+        }
+        colors[i].hue = hue; 
+        colors[i].saturation = 255;
+        colors[i].value = brightness;      
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     // Validate arguments
-    if(argc-1 != 2) {
-        printf("Usage: set_led <hue-offset (degrees)> <brightness (0-255)>\n");
+    if(argc-1 != 3) {
+        printf("Usage: set_led <hue-offset (degrees)> <brightness (0-255)> <spectrum (0-360)>\n");
         return 1;
     }
 
     int hue_offset = atoi(argv[1]);
     uint8_t brightness = (uint8_t)atoi(argv[2]);
+    int spectrum = atoi(argv[3]);
 
     OpenZencoderFd();
 
     // Register signal handler for SIGINT
     signal(SIGINT, sigint_handler);
-
-    int hue = 0;
+    
+    // Initialize the colors for each LED
+    InitColors(spectrum, brightness);
     while (!stop_flag) {
         for (int i = 0; i < 9; i++) {
             // Calculate RGB values from hue
             int red, green, blue;
-            HsvToRgb(hue, 255, brightness, &red, &green, &blue);
+            
+            HsvToRgb(colors[i].hue, colors[i].saturation, colors[i].value, &red, &green, &blue);
     
             // Set LED color
             SetLedAtIndexRGB(i, red, green, blue);
-
-            // Increment hue for next LED
-            hue += hue_offset;
-            if (hue >= 360) {
-                hue = 0;
+            colors[i].hue += hue_offset;
+            if(colors[i].hue >= 360){
+                colors[i].hue = 0;
             }
         }
 
