@@ -73,8 +73,7 @@ typedef struct {
 
 Code (in theory, not tested yet)
 ```c
-led_rgb_cfg_t *conf;
-conf = malloc(typeof(led_rgb_cfg_t));
+led_rgb_cfg_t *conf = malloc(sizeof(led_rgb_cfg_t));
 conf->lednbr = <index of the led between 1-12>
 conf->red = <0-255>
 conf->green = <0-255>
