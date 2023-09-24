@@ -14,7 +14,7 @@ First set your cross compiler path. For the Quad Cortex this should be `arm-linu
 ```
 export CROSS_COMPILE=<your-cross-compiler-path>
 ```
-Then to build just run
+Now cd into the folder `/src/stomps`, and to build just run
 ```
 make
 ```
@@ -61,4 +61,9 @@ Just discovered control over LED's is achieved by making the following ioctl cal
 ioctl(_fd, 0x4004e101, &conf);
 ```
 
-You can use the `led-control/set_led` utility to set an led to any value you want.
+The config bytes look like this:
+| 0 | 1 | 2 | 3 |
+|---|---|---|---|
+| index (0-11) | red (0-254) | green (0-254) | blue (0-254) |
+
+You can use the `bin/set_led` utility to set an led to any value you want. This is built in the same way as you would build the above.
