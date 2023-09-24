@@ -61,22 +61,4 @@ Just discovered control over LED's is achieved by making the following ioctl cal
 ioctl(_fd, 0x4004e101, &conf);
 ```
 
-The config is a struct of the following type:
-```c
-typedef struct {
-    uint8_t lednbr;
-    uint8_t red;
-    uint8_t green;
-    uint8_t blue;
-} led_rgb_cfg_t;
-```
-
-Code (in theory, not tested yet)
-```c
-led_rgb_cfg_t *conf = malloc(sizeof(led_rgb_cfg_t));
-conf->lednbr = <index of the led between 1-12>
-conf->red = <0-255>
-conf->green = <0-255>
-conf->blue = <0-255>
-ioctl(<zencoder-file-descriptor>, 0x4004e101, &conf);
-```
+You can use the `led-control/set_led` utility to set an led to any value you want.
