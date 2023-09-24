@@ -15,6 +15,8 @@ int main(int argc, char const *argv[])
     int red = atoi(argv[2]);
     int green = atoi(argv[3]);
     int blue = atoi(argv[4]);
-
-    return SetLedAtIndexRGB(led_index, red, green, blue);
+    OpenZencoderFd();
+    SetLedAtIndexRGB(led_index, red, green, blue);
+    CloseZencoderFd();
+    return 1;
 }

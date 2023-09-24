@@ -14,8 +14,8 @@ typedef struct {
     uint8_t blue;
 } led_rgb_cfg_t;
 
-int Open();
-int Close();
+int OpenZencoderFd();
+int CloseZencoderFd();
 int SetLedAtIndexRGB(int led_index, int red, int green, int blue);
 
 #endif // STOMP_LED_H

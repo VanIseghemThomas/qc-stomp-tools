@@ -15,7 +15,7 @@ typedef struct {
 } led_rgb_cfg_t;
 
 // Open the file descriptor for the Zencoder
-int Open() {
+int OpenZencoderFd() {
     zencoderfd = open("/dev/zencoderfd", O_RDWR);
     if (zencoderfd == -1) {
         printf("Error while reading file descriptor\n");
@@ -25,7 +25,7 @@ int Open() {
 }
 
 // Close the file descriptor for the Zencoder
-int Close() {
+int CloseZencoderFd() {
     if (close(zencoderfd) == -1) {
         printf("Error while closing file descriptor\n");
         return -1;
@@ -46,7 +46,7 @@ int SetLedAtIndexRGB(int led_index, int red, int green, int blue) {
     conf.green = green;
     conf.blue = blue;
     if (ioctl(zencoderfd, IOCTL_SET_LED, &conf) == -1) {
-        printf("Error while setting LED\n");
+        printf("Error while setting LED, did you open the file descriptor?\n");
         return -1;
     }
     
