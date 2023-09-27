@@ -50,13 +50,13 @@ int SetLedAtIndexRGB(int led_index, int red, int green, int blue) {
         return -1;
     }
     
-    printf(
-        "[LED set] index: %d, r: %d, g: %d, b: %d\n",
-        conf.led_index,
-        conf.red,
-        conf.green,
-        conf.blue
-    );
+    // printf(
+    //     "[LED set] index: %d, r: %d, g: %d, b: %d\n",
+    //     conf.led_index,
+    //     conf.red,
+    //     conf.green,
+    //     conf.blue
+    // );
 
     return 0;
 }
